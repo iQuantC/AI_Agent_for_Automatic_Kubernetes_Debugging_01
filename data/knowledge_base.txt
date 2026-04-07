@@ -1,0 +1,12 @@
+If pod is in CrashLoopBackOff:
+- Check logs using kubectl logs
+- Common causes: insufficient memory, bad config
+
+If pod is OOMKilled:
+- Increase memory limits
+
+If ImagePullBackOff:
+- Check image name and registry
+
+If container exits immediately:
+- Check entrypoint and command
