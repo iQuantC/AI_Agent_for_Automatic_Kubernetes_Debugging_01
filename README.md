@@ -13,28 +13,7 @@ In this project, we build an end-to-end AI-powered DevOps Agent that monitors Ku
 mkdir app data k8s
 ```
 
-## Step 1: Setup Kubernetes Cluster
-Make sure that Minikube is installed on your system
-
-```sh
-minikube start
-kubectl get nodes
-```
-
-## Step 2: Deploy a Faulty App (for testing)
-Deploy a Faulty App with low memory (intentionally low)
-```sh 
-kubectl apply -f k8s/faulty-app.yaml
-kubectl get all
-```
-
-Grab the URL of App and open it on your browser:
-```sh
-minikube service faulty-app-service
-```
-
-
-## Step 3: Set up Python Virtual Environment
+## Step 1: Set up Python Virtual Environment
 ```sh
 python -m venv devops_agent
 source devops_agent/bin/activate
@@ -44,7 +23,15 @@ source devops_agent/bin/activate
 pip install -r requirements.txt
 ```
 
-## Step 4: Knowledge Base
+## Step 2: Setup Kubernetes Cluster
+Make sure that Minikube is installed on your system
+
+```sh
+minikube start
+kubectl get nodes
+```
+
+## Step 3: Knowledge Base
 Here we will create a knowledge base for our agent
 
 ```sh
@@ -52,7 +39,7 @@ mkdir data && cd data
 touch knowledge_base.txt
 ```
 
-## Step 5: Vector Store (Chroma)
+## Step 4: Vector Store (Chroma)
 
 ```sh
 mkdir app && cd app
@@ -61,7 +48,7 @@ touch k8s_collector.py
 touch fixer.py
 ```
 
-## Step 6: Run the Agent
+## Step 5: Run the Agent
 Be sure that you have a HuggingFace Account and login via cli:
 ```sh
 pip install --upgrade huggingface_hub
@@ -94,6 +81,19 @@ hf auth login
                         Permissions: "Write". Generate token.
 4. Copy and Paste token on terminal and press Enter
 5. Add token as git cred: No. Press enter
+
+
+## Step 6: Deploy a Faulty App (for testing)
+Deploy a Faulty App with low memory (intentionally low)
+```sh 
+kubectl apply -f k8s/faulty-app.yaml
+kubectl get all
+```
+
+Grab the URL of App and open it on your browser:
+```sh
+minikube service faulty-app-service
+```
 
 
 Check the Kubernetes pods of the Faulty App on a dedicated terminal:
