@@ -1,6 +1,13 @@
 # DevOps AI Agent for Automatic Kubernetes Debugging 101
 In this project, we build an end-to-end AI-powered DevOps Agent that monitors Kubernetes cluster, collects logs from pods, stores knowledge in a vector DB, and uses an AI Agent to diagnose the issues, suggest fixes and apply  the fixes automatically. 
 
+The system does this: 
+```sh
+Kubernetes → Logs → AI Brain → Decision → Fix
+```
+Each file fits somewhere in that pipeline.
+
+
 ## Tech Stack
 1. Kubernetes (Minikube)
 2. Python
@@ -29,6 +36,20 @@ Make sure that Minikube is installed on your system
 ```sh
 minikube start
 kubectl get nodes
+```
+
+```sh
+data/knowledge.txt   →   Troubleshooting knowledge
+
+k8s/faulty-app.yaml  →   creates the broken test app
+        
+k8s_collector.py     →   gets Kubernetes logs
+        
+vector_store.py      →   Stores, finds, and retrieves relevant knowledge
+        
+agent.py             →   asks LLM for diagnosis (Main AI brain)
+        
+fixer.py             →   applies fix
 ```
 
 ## Step 3: Knowledge Base
